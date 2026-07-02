@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style data-omelette-print-defaults>
+@media print {
+  @page { margin: 0.5in; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, tr, [class~="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#F6EFE2}
+  ::selection{background:#100D0A;color:#F6EFE2}
+  @keyframes vdKen{0%{transform:scale(1.03)}100%{transform:scale(1.1)}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:'Anderson Grotesk','Inter','Helvetica Neue',Arial,sans-serif;background:#F6EFE2;color:#2B2620;overflow-x:hidden;-webkit-font-smoothing:antialiased">
+
+  <template id="__bundler_thumbnail">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" fill="#100D0A"/>
+      <g fill="none" stroke="#A6874C" stroke-width="1.2"><path d="M50 30 L68 50 L50 70 L32 50 Z"/></g>
+      <text x="50" y="55" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#EFE6D2" letter-spacing="1">V&amp;D</text>
+    </svg>
+  </template>
+
+  <sc-if value="{{ showTopBar }}" hint-placeholder-val="{{ true }}">
+  <div style="background:#100D0A;color:#C6A662;display:flex;justify-content:center;align-items:center;padding:9px 20px;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase">
+    <span>A Diamond Maison · Since 1950</span>
+  </div>
+  </sc-if>
+
+  <!-- ===== HEADER ===== -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(246,239,226,.86);backdrop-filter:blur(12px);border-bottom:1px solid rgba(166,135,76,.26)">
+    <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,56px);height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#top" style="text-decoration:none;display:flex;flex-direction:column;line-height:1">
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:25px;letter-spacing:.14em;color:#2B2620">VISWA <span style="color:#A6874C">&amp;</span> DEVJI</span>
+        <span style="font-size:8.5px;letter-spacing:.36em;text-transform:uppercase;color:#A6874C;margin-top:5px;padding-left:2px">Diamonds Since 1950</span>
+      </a>
+
+      <sc-if value="{{ showDesktopNav }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;align-items:center;gap:clamp(15px,1.9vw,30px)">
+        <a href="#collections" style="font-size:12.5px;letter-spacing:.12em;color:#2B2620;text-decoration:none;transition:color .3s" style-hover="color:#A6874C">Collections</a>
+        <a href="#bespoke" style="font-size:12.5px;letter-spacing:.12em;color:#2B2620;text-decoration:none;transition:color .3s" style-hover="color:#A6874C">Bespoke</a>
+        <a href="#craft" style="font-size:12.5px;letter-spacing:.12em;color:#2B2620;text-decoration:none;transition:color .3s" style-hover="color:#A6874C">Craftsmanship</a>
+        <a href="#masterpieces" style="font-size:12.5px;letter-spacing:.12em;color:#2B2620;text-decoration:none;transition:color .3s" style-hover="color:#A6874C">Masterpieces</a>
+        <a href="#stores" style="font-size:12.5px;letter-spacing:.12em;color:#2B2620;text-decoration:none;transition:color .3s" style-hover="color:#A6874C">Stores</a>
+        <a href="#journal" style="font-size:12.5px;letter-spacing:.12em;color:#2B2620;text-decoration:none;transition:color .3s" style-hover="color:#A6874C">Journal</a>
+        <a href="#stores" style="margin-left:6px;border:1px solid rgba(43,38,32,.28);color:#2B2620;padding:11px 22px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .4s" style-hover="background:#100D0A;color:#F6EFE2;border-color:#100D0A">Book an Appointment</a>
+      </nav>
+      </sc-if>
+
+      <sc-if value="{{ isMobile }}">
+      <button onClick="{{ toggleMenu }}" aria-label="Menu" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px">
+        <span style="width:26px;height:1.5px;background:#2B2620;display:block"></span>
+        <span style="width:26px;height:1.5px;background:#2B2620;display:block"></span>
+        <span style="width:17px;height:1.5px;background:#A6874C;display:block"></span>
+      </button>
+      </sc-if>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <sc-if value="{{ menuOpen }}">
+  <div style="position:fixed;inset:0;z-index:60;background:#F6EFE2;padding:28px clamp(24px,7vw,48px);display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:44px">
+      <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;letter-spacing:.14em">VISWA <span style="color:#A6874C">&amp;</span> DEVJI</span>
+      <button onClick="{{ closeMenu }}" aria-label="Close" style="background:none;border:1px solid rgba(166,135,76,.5);width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:20px;color:#2B2620">×</button>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:4px">
+      <a href="#collections" onClick="{{ closeMenu }}" style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#2B2620;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(166,135,76,.2)">Collections</a>
+      <a href="#bespoke" onClick="{{ closeMenu }}" style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#2B2620;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(166,135,76,.2)">Bespoke</a>
+      <a href="#craft" onClick="{{ closeMenu }}" style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#2B2620;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(166,135,76,.2)">Craftsmanship</a>
+      <a href="#masterpieces" onClick="{{ closeMenu }}" style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#2B2620;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(166,135,76,.2)">Masterpieces</a>
+      <a href="#stores" onClick="{{ closeMenu }}" style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#2B2620;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(166,135,76,.2)">Stores</a>
+      <a href="#journal" onClick="{{ closeMenu }}" style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#2B2620;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(166,135,76,.2)">Journal</a>
+    </nav>
+    <a href="#stores" onClick="{{ closeMenu }}" style="margin-top:auto;border:1px solid #100D0A;color:#100D0A;text-align:center;padding:18px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none">Book an Appointment</a>
+  </div>
+  </sc-if>
+
+  <!-- ===== HERO BANNER (full width) ===== -->
+  <section id="top" style="position:relative;min-height:clamp(540px,86vh,880px);display:flex;align-items:center;overflow:hidden;background:#100D0A">
+    <img src="images/hero-banner.jpg" alt="Viswa & Devji high jewellery" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:vdKen 22s ease-in-out infinite alternate">
+    <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:0 clamp(24px,6vw,64px)">
+      <div style="max-width:560px">
+        <div data-reveal="" style="display:flex;align-items:center;gap:12px;margin-bottom:28px">
+          <span style="width:36px;height:1px;background:#C6A662;display:block"></span>
+          <span style="font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:#C6A662">The Maison of Diamonds</span>
+        </div>
+        <h1 data-reveal="" data-reveal-delay="90" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(44px,6.2vw,86px);line-height:1.0;letter-spacing:-.01em;color:#F5EEDD">Diamond Jewellery,<br><span style="font-style:italic;color:#E4CFA0">Crafted Like Art</span></h1>
+        <p data-reveal="" data-reveal-delay="180" style="margin-top:30px;max-width:420px;font-size:clamp(15px,1.2vw,17px);line-height:1.8;color:#CFC5B0;font-weight:300">Since 1950, rare diamonds shaped by hand into stories of love, legacy and individuality.</p>
+        <div data-reveal="" data-reveal-delay="260" style="display:flex;flex-wrap:wrap;gap:clamp(22px,3vw,44px);margin-top:44px">
+          <a href="#collections" style="display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#F5EEDD;text-decoration:none;padding-bottom:9px;border-bottom:1px solid rgba(228,207,160,.6);transition:all .4s" style-hover="color:#E4CFA0;border-color:#E4CFA0">Explore Collections <span style="font-size:14px">→</span></a>
+          <a href="#stores" style="display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#C4BAA4;text-decoration:none;padding-bottom:9px;border-bottom:1px solid rgba(245,238,221,.22);transition:all .4s" style-hover="color:#F5EEDD;border-color:#F5EEDD">Book a Private Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LEGACY ===== -->
+  <section style="padding:clamp(84px,11vw,140px) clamp(24px,6vw,56px);text-align:center">
+    <div style="max-width:760px;margin:0 auto">
+      <div data-reveal="" style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#A6874C;letter-spacing:.1em;margin-bottom:8px">V&amp;D</div>
+      <div data-reveal="" style="font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#A6874C;margin-bottom:26px">Our Legacy</div>
+      <h2 data-reveal="" data-reveal-delay="80" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.1;letter-spacing:-.01em;color:#221E18">A Legacy Written in Diamonds</h2>
+      <p data-reveal="" data-reveal-delay="150" style="margin:30px auto 0;max-width:560px;font-size:clamp(15px,1.2vw,18px);line-height:1.85;color:#6E655A;font-weight:300">Three generations of drawing, cutting and setting rare stones within our own atelier — an artistry measured in the stories each piece is made to hold.</p>
+    </div>
+  </section>
+
+  <!-- ===== SIGNATURE COLLECTIONS ===== -->
+  <section id="collections" style="padding:clamp(70px,9vw,120px) clamp(24px,6vw,56px);background:#FBF6EC">
+    <div style="max-width:1320px;margin:0 auto">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px">
+        <div>
+          <div data-reveal="" style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+            <span style="width:34px;height:1px;background:#A6874C;display:block"></span>
+            <span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#A6874C">Signature Collections</span>
+          </div>
+          <h2 data-reveal="" data-reveal-delay="60" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4vw,50px);line-height:1.06;color:#221E18">Explore the Maison</h2>
+        </div>
+        <a data-reveal="" href="#" style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#2B2620;text-decoration:none;border-bottom:1px solid rgba(166,135,76,.5);padding-bottom:6px;transition:all .3s" style-hover="color:#A6874C;border-color:#A6874C">All Collections</a>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,2.4vw,38px)">
+
+        <a href="#" data-reveal="" style="text-decoration:none;display:block">
+          <div style="overflow:hidden;background:#EFE6D5;aspect-ratio:4/5"><img src="images/polki-earrings.png" alt="Diamond Earrings" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
+          <div style="margin-top:18px"><span style="font-size:11px;letter-spacing:.24em;color:#A6874C">01</span><div style="font-family:'Cormorant Garamond',serif;font-size:23px;color:#221E18;margin-top:5px">Diamond Earrings</div></div>
+        </a>
+
+        <a href="#" data-reveal="" data-reveal-delay="70" style="text-decoration:none;display:block">
+          <div style="overflow:hidden;background:#EFE6D5;aspect-ratio:4/5"><img src="images/model-editorial.png" alt="Necklace Sets" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
+          <div style="margin-top:18px"><span style="font-size:11px;letter-spacing:.24em;color:#A6874C">02</span><div style="font-family:'Cormorant Garamond',serif;font-size:23px;color:#221E18;margin-top:5px">Necklace Sets</div></div>
+        </a>
+
+        <a href="#" data-reveal="" data-reveal-delay="140" style="text-decoration:none;display:block">
+          <div style="overflow:hidden;background:#EFE6D5;aspect-ratio:4/5"><img src="images/emerald-ring.png" alt="Diamond Rings" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
+          <div style="margin-top:18px"><span style="font-size:11px;letter-spacing:.24em;color:#A6874C">03</span><div style="font-family:'Cormorant Garamond',serif;font-size:23px;color:#221E18;margin-top:5px">Diamond Rings</div></div>
+        </a>
+
+        <a href="#" data-reveal="" style="text-decoration:none;display:block">
+          <div style="overflow:hidden;background:#EFE6D5;aspect-ratio:4/5"><img src="images/rosegold-bracelet.png" alt="Diamond Bracelets" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
+          <div style="margin-top:18px"><span style="font-size:11px;letter-spacing:.24em;color:#A6874C">04</span><div style="font-family:'Cormorant Garamond',serif;font-size:23px;color:#221E18;margin-top:5px">Diamond Bracelets</div></div>
+        </a>
+
+        <a href="#" data-reveal="" data-reveal-delay="70" style="text-decoration:none;display:block">
+          <div style="overflow:hidden;background:#EFE6D5;aspect-ratio:4/5"><img src="images/bridal-bangles.png" alt="Bridal Jewellery" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
+          <div style="margin-top:18px"><span style="font-size:11px;letter-spacing:.24em;color:#A6874C">05</span><div style="font-family:'Cormorant Garamond',serif;font-size:23px;color:#221E18;margin-top:5px">Bridal Jewellery</div></div>
+        </a>
+
+        <a href="#" data-reveal="" data-reveal-delay="140" style="text-decoration:none;display:block">
+          <div style="overflow:hidden;background:#EFDDD3;aspect-ratio:4/5"><img src="./dsc02782-copy-mr1yfxma.png" alt="Men's Diamond Bracelets" style="width:100%;height:100%;object-fit:cover;display:block;background-color:#EFDDD3;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
+          <div style="margin-top:18px"><span style="font-size:11px;letter-spacing:.24em;color:#A6874C">06</span><div style="font-family:'Cormorant Garamond',serif;font-size:23px;color:#221E18;margin-top:5px">Men's Bracelets</div></div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DESIGN LOUNGE / BESPOKE ===== -->
+  <section id="bespoke" style="background:{{ bespokeBg }};color:#EEE6D4">
+    <div style="display:flex;flex-wrap:wrap;align-items:stretch">
+      <div style="flex:1 1 440px;min-height:460px;position:relative;overflow:hidden">
+        <img src="images/boutique.png" alt="The Design Lounge" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      </div>
+      <div style="flex:1 1 440px;display:flex;flex-direction:column;justify-content:center;padding:clamp(52px,6vw,96px) clamp(28px,5vw,80px)">
+        <div data-reveal="" style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+          <span style="width:34px;height:1px;background:#C6A662;display:block"></span>
+          <span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C6A662">The Design Lounge</span>
+        </div>
+        <h2 data-reveal="" data-reveal-delay="60" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4.2vw,52px);line-height:1.05;color:#F6EFDD">Designed Around You</h2>
+        <p data-reveal="" data-reveal-delay="120" style="margin-top:26px;max-width:420px;font-size:clamp(15px,1.2vw,17px);line-height:1.8;color:#C6BDA9;font-weight:300">A single idea, drawn by hand and set in stone — created alongside our master designers.</p>
+
+        <div data-reveal="" data-reveal-delay="180" style="display:flex;flex-wrap:wrap;gap:0;margin:40px 0 0;border-top:1px solid rgba(198,166,98,.3)">
+          <div style="flex:1 1 120px;padding:18px 14px 4px 0"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#C6A662">01</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#B0A791;margin-top:6px">Consult</div></div>
+          <div style="flex:1 1 120px;padding:18px 14px 4px"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#C6A662">02</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#B0A791;margin-top:6px">Sketch</div></div>
+          <div style="flex:1 1 120px;padding:18px 14px 4px"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#C6A662">03</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#B0A791;margin-top:6px">Craft</div></div>
+          <div style="flex:1 1 120px;padding:18px 0 4px 14px"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#C6A662">04</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#B0A791;margin-top:6px">Reveal</div></div>
+        </div>
+
+        <a data-reveal="" data-reveal-delay="240" href="#stores" style="margin-top:44px;align-self:flex-start;display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#F6EFDD;text-decoration:none;padding-bottom:9px;border-bottom:1px solid rgba(198,166,98,.55);transition:all .4s" style-hover="color:#C6A662;border-color:#C6A662">Begin Your Bespoke Journey <span style="font-size:14px">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CRAFTSMANSHIP / ROYAL CUT ===== -->
+  <section id="craft" style="padding:clamp(70px,9vw,124px) clamp(24px,6vw,56px)">
+    <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,80px);align-items:center">
+      <div data-reveal="" style="flex:1 1 380px;overflow:hidden;aspect-ratio:1/1;background:#100D0A;min-width:280px">
+        <img src="./chatgpt-image-jun-29_-2026_-11_36_20-am-mr1yemgd.png" alt="Royal Cut diamonds" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div style="flex:1 1 380px">
+        <div data-reveal="" style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <span style="width:34px;height:1px;background:#A6874C;display:block"></span>
+          <span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#A6874C">Craftsmanship</span>
+        </div>
+        <h2 data-reveal="" data-reveal-delay="60" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4vw,50px);line-height:1.05;color:#221E18">The Royal Cut</h2>
+        <p data-reveal="" data-reveal-delay="120" style="margin-top:24px;max-width:440px;font-size:clamp(15px,1.2vw,17px);line-height:1.8;color:#6E655A;font-weight:300">A cut engineered for one purpose — light. Every facet hand-planned, every stone set within our atelier.</p>
+        <div data-reveal="" data-reveal-delay="180" style="margin-top:36px;display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid rgba(166,135,76,.25)"><span style="font-size:14px;color:#2B2620">Hand-planned facets</span><span style="font-size:12px;letter-spacing:.14em;color:#A6874C">ROYAL CUT</span></div>
+          <div style="display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid rgba(166,135,76,.25)"><span style="font-size:14px;color:#2B2620">Set entirely in-house</span><span style="font-size:12px;letter-spacing:.14em;color:#A6874C">ATELIER</span></div>
+          <div style="display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid rgba(166,135,76,.25);border-bottom:1px solid rgba(166,135,76,.25)"><span style="font-size:14px;color:#2B2620">Every stone certified</span><span style="font-size:12px;letter-spacing:.14em;color:#A6874C">ASSURED</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MASTERPIECES ===== -->
+  <section id="masterpieces" style="padding:clamp(70px,9vw,120px) clamp(24px,6vw,56px);color:#EEE6D4;background-color:#100D0A">
+    <div style="max-width:1320px;margin:0 auto">
+      <div style="text-align:center;max-width:640px;margin:0 auto 60px">
+        <div data-reveal="" style="font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#C6A662;margin-bottom:20px">The Masterpieces</div>
+        <h2 data-reveal="" data-reveal-delay="60" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.06;color:#F6EFDD">Rare &amp; Collectible</h2>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,44px)">
+        <figure data-reveal="" style="flex:1 1 340px;margin:0">
+          <div style="overflow:hidden;aspect-ratio:3/4;background:#4E1313"><img src="./dsc00599-mr1yldsj.jpg" alt="Masterpiece" style="width:100%;height:100%;object-fit:cover;display:block;background-color:#4E1313;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
+          <figcaption style="display:flex;justify-content:space-between;align-items:baseline;margin-top:20px;border-top:1px solid rgba(198,166,98,.35);padding-top:16px">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#F6EFDD">Trending</span>
+            <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#C6A662">One of One</span>
+          </figcaption>
+        </figure>
+        <figure data-reveal="" data-reveal-delay="120" style="flex:1 1 340px;margin:0">
+          <div style="overflow:hidden;aspect-ratio:3/4;background:#161210"><img src="images/ruby-bangles.png" alt="Ruby &amp; diamond bangles" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
+          <figcaption style="display:flex;justify-content:space-between;align-items:baseline;margin-top:20px;border-top:1px solid rgba(198,166,98,.35);padding-top:16px">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#F6EFDD">The Rani Bangles</span>
+            <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#C6A662">Bridal Edition</span>
+          </figcaption>
+        </figure>
+      </div>
+      <div style="text-align:center;margin-top:56px">
+        <a data-reveal="" href="#" style="display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#F6EFDD;text-decoration:none;padding-bottom:9px;border-bottom:1px solid rgba(198,166,98,.55);transition:all .4s" style-hover="color:#C6A662;border-color:#C6A662">View the Masterpieces <span style="font-size:14px">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BRIDAL ===== -->
+  <section style="position:relative;min-height:min(88vh,720px);display:flex;align-items:flex-end;overflow:hidden">
+    <img src="images/bridal-butterfly.png" alt="Bridal diamond jewellery" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:url(&quot;./dsc00697-copy-mr1ymgki.jpg&quot;) center / cover no-repeat"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,13,10,.72) 0%,rgba(16,13,10,.34) 44%,rgba(16,13,10,.04) 100%)"></div>
+    <div data-reveal="" style="position:relative;padding:clamp(44px,7vw,92px) clamp(28px,6vw,80px);max-width:600px;color:#F4E9DE">
+      <div style="font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#E6CE9B;margin-bottom:20px">Bridal</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4.6vw,56px);line-height:1.04">For the Once-in-a-Lifetime</h2>
+      <p style="margin-top:22px;max-width:420px;font-size:clamp(15px,1.2vw,17px);line-height:1.8;color:#E4D6C6;font-weight:300">Bridal diamonds with the weight of tradition and the lightness of modern design.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(22px,3vw,40px);margin-top:38px">
+        <a href="#" style="display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#F4E9DE;text-decoration:none;padding-bottom:9px;border-bottom:1px solid rgba(244,233,222,.6);transition:all .4s" style-hover="color:#E6CE9B;border-color:#E6CE9B">Discover Bridal <span style="font-size:14px">→</span></a>
+        <a href="#stores" style="display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#D8C9B4;text-decoration:none;padding-bottom:9px;border-bottom:1px solid rgba(244,233,222,.26);transition:all .4s" style-hover="color:#F4E9DE;border-color:#F4E9DE">Book a Bridal Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STORES ===== -->
+  <section id="stores" style="padding:clamp(70px,9vw,124px) clamp(24px,6vw,56px);background:#FBF6EC">
+    <div style="max-width:1320px;margin:0 auto">
+      <div style="text-align:center;max-width:620px;margin:0 auto 56px">
+        <div data-reveal="" style="font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#A6874C;margin-bottom:18px">Visit the Maison</div>
+        <h2 data-reveal="" data-reveal-delay="60" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.4vw,50px);line-height:1.06;color:#221E18">Two Boutiques, One Legacy</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(20px,2.4vw,32px)">
+        <div data-reveal="" style="border:1px solid rgba(166,135,76,.3);background:#FFFDF8;padding:clamp(32px,4vw,52px)">
+          <div style="font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#A6874C">Boutique</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:34px;color:#221E18;margin-top:10px">Chennai</h3>
+          <p style="margin-top:18px;font-size:15px;line-height:1.7;color:#6E655A;font-weight:300">North Usman Road, T. Nagar<br>Chennai — 600017</p>
+          <div style="margin-top:18px;font-size:13px;letter-spacing:.06em;color:#8B8074">Mon – Sat · 10:30am – 8:00pm</div>
+          <a href="#" style="display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#2B2620;text-decoration:none;border-bottom:1px solid rgba(166,135,76,.5);padding-bottom:7px;transition:all .3s" style-hover="color:#A6874C;border-color:#A6874C">Book an Appointment <span style="font-size:13px">→</span></a>
+        </div>
+        <div data-reveal="" data-reveal-delay="100" style="border:1px solid rgba(166,135,76,.3);background:#FFFDF8;padding:clamp(32px,4vw,52px)">
+          <div style="font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#A6874C">Boutique</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:34px;color:#221E18;margin-top:10px">Coimbatore</h3>
+          <p style="margin-top:18px;font-size:15px;line-height:1.7;color:#6E655A;font-weight:300">D.B. Road, R.S. Puram<br>Coimbatore — 641002</p>
+          <div style="margin-top:18px;font-size:13px;letter-spacing:.06em;color:#8B8074">Mon – Sat · 10:30am – 8:00pm</div>
+          <a href="#" style="display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#2B2620;text-decoration:none;border-bottom:1px solid rgba(166,135,76,.5);padding-bottom:7px;transition:all .3s" style-hover="color:#A6874C;border-color:#A6874C">Visit Our Boutique <span style="font-size:13px">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOURNAL ===== -->
+  <section id="journal" style="padding:clamp(70px,9vw,120px) clamp(24px,6vw,56px)">
+    <div style="max-width:1320px;margin:0 auto">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:52px">
+        <div>
+          <div data-reveal="" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#A6874C;margin-bottom:16px">The Journal</div>
+          <h2 data-reveal="" data-reveal-delay="60" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4vw,50px);line-height:1.06;color:#221E18">Stories &amp; Events</h2>
+        </div>
+        <a data-reveal="" href="#" style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#2B2620;text-decoration:none;border-bottom:1px solid rgba(166,135,76,.5);padding-bottom:6px;transition:all .3s" style-hover="color:#A6874C;border-color:#A6874C">Read the Journal</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(22px,2.6vw,40px)">
+        <a href="#" data-reveal="" style="text-decoration:none;display:block">
+          <div style="overflow:hidden;aspect-ratio:4/3;background:#66372F"><img src="./dsc02774-copy-mr1yqvqv.png" alt="" style="width:100%;height:100%;object-fit:cover;background-color:#66372F;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
+          <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A6874C;margin-top:18px">Craftsmanship</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;color:#221E18;margin-top:8px;line-height:1.2">The Anatomy of the Royal Cut</h3>
+        </a>
+        <a href="#" data-reveal="" data-reveal-delay="90" style="text-decoration:none;display:block">
+          <div style="overflow:hidden;aspect-ratio:4/3;background:#EFE6D5"><img src="images/model-editorial.png" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
+          <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A6874C;margin-top:18px">Bridal</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;color:#221E18;margin-top:8px;line-height:1.2">A Modern Bride's Guide to Diamonds</h3>
+        </a>
+        <a href="#" data-reveal="" data-reveal-delay="180" style="text-decoration:none;display:block">
+          <div style="overflow:hidden;aspect-ratio:4/3;background:#EFE6D5"><img src="images/necklace.png" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
+          <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A6874C;margin-top:18px">The Maison</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;color:#221E18;margin-top:8px;line-height:1.2">Inside the Design Lounge</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPOINTMENT CTA ===== -->
+  <section style="text-align:center;padding:clamp(64px,8vw,110px) clamp(24px,6vw,56px);background:#FBF6EC;border-top:1px solid rgba(166,135,76,.22)">
+    <div data-reveal="" style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#A6874C;margin-bottom:10px">V&amp;D</div>
+    <h2 data-reveal="" data-reveal-delay="60" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,4vw,46px);line-height:1.1;color:#221E18;max-width:640px;margin:0 auto">Begin a Private Conversation</h2>
+    <a data-reveal="" data-reveal-delay="140" href="#stores" style="display:inline-flex;align-items:center;gap:12px;margin-top:34px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#2B2620;text-decoration:none;padding-bottom:10px;border-bottom:1px solid rgba(166,135,76,.55);transition:all .4s" style-hover="color:#A6874C;border-color:#A6874C">Book an Appointment <span style="font-size:14px">→</span></a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:{{ footerBg }};color:#B0A791;padding:clamp(56px,7vw,88px) clamp(24px,6vw,56px) 40px">
+    <div style="max-width:1320px;margin:0 auto">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,72px);justify-content:space-between">
+        <div style="flex:1 1 300px;max-width:360px">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;letter-spacing:.12em;color:#F4ECD8">VISWA <span style="color:#C6A662">&amp;</span> DEVJI</div>
+          <div style="font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:#C6A662;margin-top:6px">Diamonds Since 1950</div>
+          <p style="margin-top:22px;font-size:14px;line-height:1.8;color:#8E877A;font-weight:300;max-width:300px">A diamond maison crafting artistic, bespoke jewellery — shaping rare stones into heirlooms since 1950.</p>
+          <div style="display:flex;gap:14px;margin-top:26px">
+            <a href="#" aria-label="Instagram" style="width:40px;height:40px;border:1px solid rgba(198,166,98,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C6A662;font-size:11px;text-decoration:none;transition:all .35s" style-hover="background:#C6A662;color:#100D0A">IG</a>
+            <a href="#" aria-label="Facebook" style="width:40px;height:40px;border:1px solid rgba(198,166,98,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C6A662;font-size:11px;text-decoration:none;transition:all .35s" style-hover="background:#C6A662;color:#100D0A">FB</a>
+            <a href="#" aria-label="YouTube" style="width:40px;height:40px;border:1px solid rgba(198,166,98,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C6A662;font-size:10px;text-decoration:none;transition:all .35s" style-hover="background:#C6A662;color:#100D0A">YT</a>
+          </div>
+        </div>
+        <div style="flex:0 1 160px">
+          <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C6A662;margin-bottom:20px">Collections</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <a href="#collections" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Earrings</a>
+            <a href="#collections" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Necklace Sets</a>
+            <a href="#collections" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Rings</a>
+            <a href="#collections" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Bracelets</a>
+            <a href="#collections" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Bridal</a>
+          </div>
+        </div>
+        <div style="flex:0 1 160px">
+          <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C6A662;margin-bottom:20px">The Maison</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <a href="#craft" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Craftsmanship</a>
+            <a href="#bespoke" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Design Lounge</a>
+            <a href="#masterpieces" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Masterpieces</a>
+            <a href="#journal" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Journal</a>
+          </div>
+        </div>
+        <div style="flex:0 1 220px">
+          <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C6A662;margin-bottom:20px">Contact</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <a href="#stores" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Chennai — T. Nagar</a>
+            <a href="#stores" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">Coimbatore — R.S. Puram</a>
+            <a href="mailto:care@viswadevji.com" style="font-size:14px;color:#B0A791;text-decoration:none;font-weight:300;transition:color .3s" style-hover="color:#F4ECD8">care@viswadevji.com</a>
+          </div>
+          <a href="#stores" style="display:inline-flex;align-items:center;gap:10px;margin-top:24px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#F4ECD8;text-decoration:none;border-bottom:1px solid rgba(198,166,98,.5);padding-bottom:7px;transition:all .35s" style-hover="color:#C6A662;border-color:#C6A662">Appointments <span style="font-size:13px">→</span></a>
+        </div>
+      </div>
+      <div style="margin-top:56px;padding-top:24px;border-top:1px solid rgba(198,166,98,.2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:11.5px;letter-spacing:.1em;color:#6F6859">
+        <span>© 2026 Viswa &amp; Devji</span>
+        <span>Chennai &nbsp;·&nbsp; Coimbatore</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 3400 },
+  &quot;showTopBar&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot; },
+  &quot;bespokeTone&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Ink&quot;, &quot;Charcoal&quot;, &quot;Wine&quot;], &quot;default&quot;: &quot;Ink&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Theme&quot; },
+  &quot;footerTone&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Warm Black&quot;, &quot;Charcoal&quot;, &quot;Wine&quot;], &quot;default&quot;: &quot;Warm Black&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Theme&quot; }
+}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  state = { isMobile: false, menuOpen: false };
+
+  componentDidMount() {
+    const mq = window.matchMedia('(max-width: 920px)');
+    const apply = () => this.setState({ isMobile: mq.matches });
+    apply();
+    mq.addEventListener('change', apply);
+    this._mq = mq; this._apply = apply;
+
+    setTimeout(() => {
+      const root = this.rootRef.current;
+      if (!root) return;
+      const els = root.querySelectorAll('[data-reveal]');
+      els.forEach((el) => {
+        const d = el.getAttribute('data-reveal-delay') || '0';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 1s cubic-bezier(.2,.7,.2,1) ' + d + 'ms, transform 1.1s cubic-bezier(.2,.7,.2,1) ' + d + 'ms';
+        el.style.willChange = 'opacity, transform';
+      });
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+      els.forEach((el) => io.observe(el));
+    }, 60);
+  }
+
+  componentWillUnmount() {
+    if (this._mq && this._apply) this._mq.removeEventListener('change', this._apply);
+  }
+
+  toggleMenu() { this.setState((s) => ({ menuOpen: !s.menuOpen })); }
+  closeMenu() { this.setState({ menuOpen: false }); }
+
+  renderVals() {
+    const bt = this.props.bespokeTone ?? 'Ink';
+    const ft = this.props.footerTone ?? 'Warm Black';
+    const bespokeBg = bt === 'Wine' ? '#3A1620' : bt === 'Charcoal' ? '#1C1813' : '#100D0A';
+    const footerBg = ft === 'Charcoal' ? '#1C1813' : ft === 'Wine' ? '#301017' : '#100D0A';
+    return {
+      rootRef: this.rootRef,
+      isMobile: this.state.isMobile,
+      showDesktopNav: !this.state.isMobile,
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.toggleMenu(),
+      closeMenu: () => this.closeMenu(),
+      showTopBar: this.props.showTopBar ?? false,
+      bespokeBg,
+      footerBg
+    };
+  }
+}
+</script>
+<script>
+(async () => {
+  if (!document.title || !document.title.trim()) document.title = "Viswa & Devji Homepage copy";
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    print-color-adjust: exact; -webkit-print-color-adjust: exact;\n    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        !settleRoot.querySelector('.sc-placeholder');
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  // Project support.js may predate runtime default-seeding; push via bridge.
+  if (isDc && window.__dcSetProps && window.__dcRootName) {
+    try {
+      const dpEl = document.querySelector('script[data-dc-script]');
+      const meta = JSON.parse((dpEl && dpEl.getAttribute('data-props')) || '{}');
+      const bag = {};
+      for (const k in meta)
+        if (k[0] !== '$' && meta[k] && meta[k].default !== undefined)
+          bag[k] = meta[k].default;
+      if (Object.keys(bag).length) {
+        window.__dcSetProps(window.__dcRootName(), bag);
+        await new Promise((r) => setTimeout(r, 50));
+      }
+    } catch (e) {}
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    for (let y = 0; y <= full; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  try { await document.fonts.ready; } catch (e) {}
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  // Re-append deck-stage's @page last so no author @page can add a margin and
+  // spill each full-bleed slide onto two sheets. Backstop for old copies.
+  if (ds) {
+    let pg = document.getElementById('deck-stage-print-page');
+    if (!pg) {
+      pg = document.createElement('style');
+      pg.textContent = '@page{size:' + (+ds.getAttribute('width') || 1920) +
+        'px ' + (+ds.getAttribute('height') || 1080) + 'px;margin:0}';
+    }
+    document.body.appendChild(pg);
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+  } catch (e) {}
+  // Size the PDF page to the rendered design unless the file opted into
+  // standard paper via @page{size:letter|A4|…}. Decks own their own @page.
+  // Wrappers (body, …) lose padding+margin so the frame sits at (0,0); the
+  // frame itself loses only margin — its padding is INSIDE the measured
+  // rect and must stay, or content shifts and leaves a gap at bottom/right.
+  var __m = null;
+  try { __m = (() => {
+  var STAMP = true;
+  var docEl = document.documentElement;
+  var doc = { width: docEl.scrollWidth, height: docEl.scrollHeight };
+
+  var ds = document.querySelector('deck-stage');
+  if (ds) {
+    var dw = Number(ds.getAttribute('width')) || 1920;
+    var dh = Number(ds.getAttribute('height')) || 1080;
+    var n = typeof ds.length === 'number' ? ds.length : ds.children.length;
+    var idx = typeof ds.index === 'number' ? ds.index : 0;
+    var frames = [];
+    for (var i = 0; i < n; i++) frames.push({ left: 0, top: 0, width: dw, height: dh });
+    return { kind: 'deck', source: 'declared', doc: doc, frames: frames,
+      authored: frames.map(function(){return{width:true,height:true}}),
+      deck: { width: dw, height: dh, slideCount: n, index: idx },
+      signals: { paperPage: false, pxPage: false } };
+  }
+
+  // Declared kind: a doc-page tag names the kind outright, so no signal
+  // heuristics run (like the deck branch above, signals report false —
+  // they describe inferred classifications only). The tag alone is not
+  // trusted: the element must have upgraded (shadowRoot present), so a
+  // leftover tag whose script was deleted falls through to the heuristics
+  // that handle plain markup.
+  var stageSx = window.scrollX || 0, stageSy = window.scrollY || 0;
+  var dp = document.querySelector('doc-page');
+  if (dp && dp.shadowRoot) {
+    // Crop to the sheet, not the host — the desk around it is screen-only
+    // chrome that must not land in PNG exports.
+    var sheet = dp.shadowRoot.querySelector('.sheet');
+    var sr = (sheet || dp).getBoundingClientRect();
+    return { kind: 'paper-doc', source: 'declared', doc: doc,
+      frames: [{ left: sr.left + stageSx, top: sr.top + stageSy,
+        width: sr.width, height: sr.height }],
+      authored: [{ width: false, height: false }],
+      signals: { paperPage: false, pxPage: false } };
+  }
+  var paperPage = false, pxPage = false;
+  var eachRule = function (fn) {
+    for (var s = 0; s < document.styleSheets.length; s++) {
+      var rs; try { rs = document.styleSheets[s].cssRules; } catch (e) { continue; }
+      for (var r = 0; r < rs.length; r++) {
+        fn(rs[r]);
+        if (rs[r].cssRules) for (var n = 0; n < rs[r].cssRules.length; n++) fn(rs[r].cssRules[n]);
+      }
+    }
+  };
+  eachRule(function (r) {
+    if (r.type !== 6) return;
+    var m = /\bsize\s*:\s*([^;}]+)/i.exec(r.cssText || '');
+    if (!m) return;
+    if (/\b(letter|a[3-5]|legal|ledger)\b/i.test(m[1])) paperPage = true;
+    if (/\d+(?:\.\d+)?px\b/i.test(m[1])) pxPage = true;
+  });
+  var signals = { paperPage: paperPage, pxPage: pxPage };
+
+  var pxVal = function (v) {
+    var m = /^(\d+(?:\.\d+)?)px$/.exec(v || ''); return m ? +m[1] : 0;
+  };
+  var authoredPx = function (el, prop) {
+    if (pxVal(el.style[prop])) return true;
+    var attr = el.getAttribute(prop);
+    if (attr && /^\d+$/.test(attr)) return true;
+    var hit = false;
+    eachRule(function (r) {
+      if (hit || r.type !== 1 || !r.style) return;
+      try { if (el.matches(r.selectorText) && pxVal(r.style[prop])) hit = true; } catch (e) {}
+    });
+    return hit;
+  };
+
+  var el = document.body, rootPxW = false;
+  for (;;) {
+    var kids = [];
+    for (var c = 0; c < el.children.length; c++) {
+      var t = el.children[c].tagName;
+      if (t !== 'SCRIPT' && t !== 'STYLE' && t !== 'TEMPLATE') kids.push(el.children[c]);
+    }
+    if (kids.length !== 1 || !(kids[0] instanceof HTMLElement)) break;
+    if (STAMP) el.setAttribute('data-om-frame-wrap', '');
+    el = kids[0];
+    rootPxW = authoredPx(el, 'width');
+    if (rootPxW) break;
+  }
+  if (!rootPxW) rootPxW = authoredPx(el, 'width');
+
+  // @page{size:letter} alone is a flowing doc; with a px-width root it's a
+  // fixed sheet pretending to be paper — fall through and size to render.
+  if (paperPage && !rootPxW) {
+    return { kind: 'paper-doc', source: 'inferred', doc: doc, signals: signals,
+      frames: [{ left: 0, top: 0, width: doc.width, height: doc.height }],
+      authored: [{ width: false, height: false }] };
+  }
+
+  var sx = window.scrollX || 0, sy = window.scrollY || 0;
+  var rectOf = function (e) {
+    var r = e.getBoundingClientRect();
+    var oy; try { oy = getComputedStyle(e).overflowY; } catch (err) {}
+    var h = oy === 'visible' ? Math.max(r.height, e.scrollHeight || 0) : r.height;
+    return { left: r.left + sx, top: r.top + sy, width: r.width, height: h };
+  };
+
+  // Multi-frame: ≥2 visible non-fixed children, each with authored px width
+  // AND height, all within ±2px of each other. Off unless the page opts in
+  // via data-om-multi-frame on the stop element — guards against card grids
+  // and pricing tables that match the geometry but aren't separate canvases.
+  if (el.hasAttribute('data-om-multi-frame')) {
+    var cands = [];
+    for (var k = 0; k < el.children.length; k++) {
+      var ch = el.children[k];
+      var cs; try { cs = getComputedStyle(ch); } catch (e) { continue; }
+      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.position === 'fixed') continue;
+      var rc = rectOf(ch);
+      if (rc.width < 2 || rc.height < 2) continue;
+      if (!authoredPx(ch, 'width') || !authoredPx(ch, 'height')) continue;
+      cands.push(rc);
+    }
+    if (cands.length >= 2) {
+      var w0 = cands[0].width, h0 = cands[0].height, ok = true;
+      for (var q = 1; q < cands.length; q++)
+        if (Math.abs(cands[q].width - w0) > 2 || Math.abs(cands[q].height - h0) > 2) ok = false;
+      if (ok) return { kind: 'multi-frame', source: 'inferred', doc: doc, signals: signals,
+        frames: cands, authored: cands.map(function(){return{width:true,height:true}}) };
+    }
+  }
+
+  if (STAMP) el.setAttribute('data-om-frame', '');
+  return { kind: 'single-canvas', source: 'inferred', doc: doc, signals: signals,
+    frames: [rectOf(el)],
+    authored: [{ width: rootPxW, height: authoredPx(el, 'height') }] };
+})(); } catch (e) {}
+  var frame = null;
+  if (__m && __m.kind === 'single-canvas') {
+    var f = __m.frames && __m.frames[0];
+    if (f && f.width >= 200 && f.height >= 200) {
+      frame = f;
+      var fst = document.createElement('style');
+      fst.textContent = '@media print{@page{size:' + Math.ceil(f.width) + 'px ' +
+        Math.ceil(f.height) + 'px;margin:0}' +
+        'html,body,[data-om-frame-wrap]{padding:0!important;margin:0!important;background:none!important}' +
+        '[data-om-frame]{margin:0!important}}';
+      document.body.appendChild(fst);
+    }
+  }
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks (slides
+  // are sized to the page) and for fixed-size canvases (frame set, or an author
+  // px-based @page) — runs as before for flowing docs on letter/A4.
+  try {
+    if (!ds && !frame && !(__m && __m.signals && __m.signals.pxPage)) {
+      const PAGE_PX = 1024;
+      // Our print defaults add a real @page margin only when the source has
+      // no @page of its own; computed style can't tell us (it reports screen
+      // media), so read the injected rule directly.
+      const defaults = document.querySelector('style[data-omelette-print-defaults]');
+      const pageInset = /@page\s*\{[^}]*margin/.test(defaults ? defaults.textContent || '' : '');
+      const SEL = 'section,article,figure,table,pre,blockquote,[class~="card" i],[class~="page" i],[class~="sheet" i]';
+      for (const el of document.body.querySelectorAll(SEL)) {
+        if (el instanceof HTMLElement && el.offsetHeight > PAGE_PX) {
+          el.setAttribute('data-om-oversized', '');
+          // Fake-paged docs simulate sheets with over-tall break-after:page
+          // boxes; honoring the break spills half-blank pages and ends a
+          // colored box mid-sheet. Flow them, and (only when we own the page
+          // inset) drop the redundant padding/background via the rule below.
+          const cs = getComputedStyle(el);
+          if (cs.breakAfter === 'page' || cs.pageBreakAfter === 'always') {
+            el.setAttribute('data-om-fakepage', '');
+          }
+        }
+      }
+      const ost = document.createElement('style');
+      ost.textContent = '@media print{' +
+        '[data-om-oversized]{break-inside:auto !important;page-break-inside:auto !important}' +
+        '[data-om-fakepage]{break-after:auto !important;page-break-after:auto !important}' +
+        (pageInset ? '[data-om-fakepage]{padding:0 !important;background:none !important}' : '') +
+        '}';
+      document.head.appendChild(ost);
+    }
+  } catch (e) {}
+  // macOS Preview renders Skia-PDF Luminosity soft-masks as opaque grey boxes;
+  // swap the CSS that triggers them for Preview-safe forms.
+  try {
+    for (const el of document.body.querySelectorAll('*')) {
+      const cs = getComputedStyle(el);
+
+      if (cs.boxShadow !== 'none' && cs.filter === 'none') {
+        const outs = [], kept = [];
+        for (const s of cs.boxShadow.split(/,(?![^(]*[)])/)) {
+          const t = s.trim();
+          const m = t.match(/^(rgba?[(][^)]+[)]) (-?[0-9.]+px) (-?[0-9.]+px) ([0-9.]+px) -?[0-9.]+px$/);
+          if (m && parseFloat(m[4]) > 0) outs.push('drop-shadow(' + m[2] + ' ' + m[3] + ' ' + m[4] + ' ' + m[1] + ')');
+          else kept.push(t);
+        }
+        if (outs.length) {
+          el.style.setProperty('filter', outs.join(' '), 'important');
+          el.style.setProperty('box-shadow', kept.join(', ') || 'none', 'important');
+        }
+      }
+
+      const mask = cs.maskImage && cs.maskImage !== 'none' ? cs.maskImage : cs.webkitMaskImage;
+      if (mask && mask !== 'none' && cs.filter === 'none') el.style.setProperty('filter', 'opacity(1)', 'important');
+    }
+  } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>
