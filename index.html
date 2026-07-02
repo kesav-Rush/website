@@ -17,6 +17,15 @@
   body{margin:0;background:#F6EFE2}
   ::selection{background:#123F33;color:#F6EFE2}
   @keyframes vdKen{0%{transform:scale(1.02)}100%{transform:scale(1.12)}}
+  @media (max-width:920px){
+    #top{flex-direction:column}
+    #top > div:first-child{order:2}
+    #top > div:last-child{order:1;min-height:58vh}
+    #bridal{display:block !important;position:static !important;min-height:0 !important;overflow:visible !important;background:#F6EFE2}
+    #bridal > img{display:none !important}
+    #bridal > div:nth-of-type(1){position:relative !important;inset:auto !important;top:auto !important;height:54vh !important;min-height:340px}
+    #bridal > div:last-child{position:relative !important;max-width:none !important;padding:40px clamp(24px,7vw,40px) 56px}
+  }
 </style>
 </helmet>
 <div ref="{{ rootRef }}" style="font-family:'Anderson Grotesk','Inter','Helvetica Neue',Arial,sans-serif;background:#F6EFE2;color:#2B2620;overflow-x:hidden;-webkit-font-smoothing:antialiased">
@@ -111,7 +120,7 @@
     </div>
     <div style="flex:1 1 420px;position:relative;overflow:hidden;min-height:460px;background:#0C2A22">
       <img src="./elegant_portrait_in_traditional_saree-mr3d8ceu.png" alt="Peacock diamond earrings" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:vdKen 18s ease-in-out infinite alternate">
-      <div style="position:absolute;left:32px;bottom:30px;color:#EFE3C6;font-size:11px;letter-spacing:.26em;text-transform:uppercase">The Peacock · High Jewellery</div>
+      <div style="position: absolute; left: 32px; bottom: 30px; color: #EFE3C6; font-size: 11px; letter-spacing: .26em; text-transform: uppercase; display: none"></div>
     </div>
   </section>
 
@@ -302,7 +311,7 @@
   </section>
 
   <!-- ===== BRIDAL ===== -->
-  <section style="position:relative;min-height:min(88vh,720px);display:flex;align-items:flex-end;overflow:hidden">
+  <section id="bridal" style="position:relative;min-height:min(88vh,720px);display:flex;align-items:flex-end;overflow:hidden">
     <img src="share-assets/bridal-butterfly.jpg" alt="Bridal diamond jewellery" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
     <div style="position: absolute; inset: 0; background: url(&quot;./chatgpt-image-jul-2_-2026_-03_58_31-pm-mr3d65e7.png&quot;) center / cover no-repeat; top: 0px"></div>
     <div data-reveal="" style="position:relative;padding:clamp(44px,7vw,92px) clamp(28px,6vw,80px);max-width:600px;color:#F4E9DE">
@@ -387,8 +396,8 @@
     <div style="max-width:1320px;margin:0 auto">
       <div style="display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,72px);justify-content:space-between">
         <div style="flex:1 1 300px;max-width:360px">
-          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;letter-spacing:.12em;color:#F4ECD8">VISWA <span style="color:#C9A85F">&amp;</span> DEVJI</div>
-          <div style="font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:#C9A85F;margin-top:6px">Diamonds Since 1950</div>
+          <div style="font-family: 'Cormorant Garamond',serif; font-weight: 600; font-size: 26px; letter-spacing: .12em; color: #FFFEFA; background: url(&quot;./vd-logo-mr3ga4eu.png&quot;) center / cover no-repeat; height: 38px; width: 250px"><br></div>
+          <div style="font-size: 9px; letter-spacing: .36em; text-transform: uppercase; color: #171310; margin-top: 6px">Diamonds Since 1950</div>
           <p style="margin-top:22px;font-size:14px;line-height:1.8;color:#A9A091;font-weight:300">A luxury diamond maison crafting artistic, bespoke jewellery — shaping rare diamonds into heirlooms since 1950.</p>
           <div style="display:flex;gap:14px;margin-top:26px">
             <a href="#" aria-label="Instagram" style="width:38px;height:38px;border:1px solid rgba(201,168,95,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C9A85F;font-size:12px;letter-spacing:.05em;text-decoration:none;transition:all .35s" style-hover="background:#C9A85F;color:#20180C">IG</a>
